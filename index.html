@@ -1,8 +1,288 @@
-<html>
-  <head> 
-    <meta name="google-adsense-account" content="ca-pub-9798101112774874"> 
-    hello world!
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9798101112774874"
-     crossorigin="anonymous"></script>
-  </head>
-</html>
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ad Lottery — Participate</title>
+  <style>
+    :root{
+      --green:#e6f9ec; /* very light green background */
+      --accent:#66c07a; /* medium green */
+      --accent-2:#4aa35f;
+      --white:#ffffff;
+      --muted:#6b6b6b;
+      --glass: rgba(255,255,255,0.85);
+      --radius:14px;
+      --card-pad:16px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--green),#f8fff9);color:#0b3b1f}
+    .container{max-width:1200px;margin:28px auto;padding:20px;display:grid;grid-template-columns:1fr 320px;gap:20px}
+    header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between}
+    header h1{margin:0;font-size:20px}
+    .card{background:var(--glass);backdrop-filter:blur(4px);border-radius:var(--radius);box-shadow:0 6px 20px rgba(10,60,20,0.06);padding:var(--card-pad)}
+
+    /* left column */
+    .main{display:flex;flex-direction:column;gap:16px}
+    .participation{display:flex;gap:12px;align-items:center}
+    .email{flex:1;display:flex;gap:8px}
+    input[type=email]{flex:1;padding:12px;border-radius:10px;border:1px solid rgba(75,140,90,0.15);background:white}
+    button.primary{background:var(--accent);border:none;color:var(--white);padding:12px 16px;border-radius:10px;cursor:pointer;font-weight:600}
+    button.secondary{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:10px 12px;border-radius:10px;cursor:pointer}
+
+    .ad-area{display:grid;grid-template-columns:1fr 260px;gap:16px}
+    .ad-canvas-wrap{min-height:340px;display:flex;flex-direction:column;gap:10px}
+    canvas#adCanvas{width:100%;height:320px;border-radius:10px;background:linear-gradient(180deg,#ffffff, #f0fff5);border:1px solid rgba(0,0,0,0.03)}
+
+    .stats{display:flex;gap:10px;align-items:center}
+    .stat{background:transparent;padding:10px;border-radius:10px;border:1px dashed rgba(75,140,90,0.12);min-width:110px;text-align:center}
+    .stat strong{display:block;font-size:18px}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* right column: leaderboard */
+    aside{display:flex;flex-direction:column;gap:12px}
+    .leaderboard{display:flex;flex-direction:column;gap:8px}
+    .leader-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.7), rgba(255,255,255,0.5));}
+
+    footer{grid-column:1/-1;margin-top:10px;padding:10px 4px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+    .links{display:flex;gap:12px;flex-wrap:wrap}
+    a.footer-link{color:var(--muted);text-decoration:none;font-size:13px}
+
+    /* small screens */
+    @media (max-width:980px){
+      .container{grid-template-columns:1fr;}
+      .ad-area{grid-template-columns:1fr}
+      aside{order:3}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Ad Lottery — Win ad revenue</h1>
+      
+    </header>
+
+    <main class="main">
+      <section class="card participation">
+        <div style="flex:1">
+          <label for="email" class="muted">Enter your email to participate</label>
+          <div class="email">
+            <input id="email" type="email" placeholder="you@example.com" aria-label="email address">
+            <button id="joinBtn" class="primary">Participate</button>
+            
+          </div>
+          <div id="joinMsg" class="muted" style="margin-top:8px">Thanks — iyad65@outlook.com has been registered for this lottery.</div>
+        </div>
+      </section>
+
+      <section class="card ad-area" aria-label="ad area">
+        <div class="ad-canvas-wrap">
+          <canvas id="adCanvas" width="800" height="320" role="img" aria-label="Advertisement canvas"></canvas>
+          <div class="stats">
+            <div class="stat"><span class="muted">Participants</span><strong id="watchCount">0</strong></div>
+            <div class="stat"><span class="muted">Time left</span><strong id="timeLeft">00:00:00</strong></div>
+            
+          </div>
+        </div>
+
+        <div>
+          
+
+          
+        </div>
+      </section>
+
+      <section class="card" style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+        <div>
+          <h3 style="margin:0">How it works (summary)</h3>
+          <p class="muted" style="margin:6px 0 0 0">People watch ads. A revenue share from ad views goes into the lottery pool. At the end of the lottery timer, a winner is chosen from participating emails.</p>
+        </div>
+        
+      </section>
+    </main>
+
+    <aside>
+      <div class="card leaderboard">
+        <h3 style="margin:0 0 8px 0">Leaderboard — Most ads watched</h3>
+        <div id="leaderboardList"><div class="leader-item"><span>1. alex@example.com</span><strong>24</strong></div><div class="leader-item"><span>2. sam@example.com</span><strong>19</strong></div><div class="leader-item"><span>3. jordan@example.com</span><strong>15</strong></div></div>
+      </div>
+
+      
+
+      <div class="card">
+        <h4 style="margin:0 0 8px 0">Rules</h4>
+        <p class="muted" style="margin:0;line-height:1.4">• Enter a valid email so YOU get payed.<br>• An Email can be used once in each lottery.<br>• Payment is recieved in crypto via email.</p>
+      </div>
+    </aside>
+
+    <footer>
+      <div class="links">
+        
+        
+        
+        <a href="file:///C:/Users/Iyad%20Shehadeh/Downloads/lottery_ad_participation_ui.html#" class="footer-link">Contact</a>
+        <a href="file:///C:/Users/Iyad%20Shehadeh/Downloads/lottery_ad_participation_ui.html#" class="footer-link">Help</a>
+      </div>
+      <div class="muted">© <span id="year">2026</span> Ad Lottery</div>
+    </footer>
+  </div>
+
+  <script>
+    // Basic UI-only JS to simulate interactions. Replace / wire-up to backend as needed.
+    const emailInput = document.getElementById('email');
+    const joinBtn = document.getElementById('joinBtn');
+    const playAdBtn = document.getElementById('playAdBtn');
+    const joinMsg = document.getElementById('joinMsg');
+    const watchingCountEl = document.getElementById('watchingCount');
+    const timeLeftEl = document.getElementById('timeLeft');
+    const playsCountEl = document.getElementById('playsCount');
+    const participantsCountEl = document.getElementById('participantsCount');
+    const revenuePoolEl = document.getElementById('revenuePool');
+    const lotteryStatusEl = document.getElementById('lotteryStatus');
+    const startLotteryBtn = document.getElementById('startLottery');
+    const leaderList = document.getElementById('leaderboardList');
+    const simulateWatch = document.getElementById('simulateWatch');
+    const resetBtn = document.getElementById('resetBtn');
+    const adCanvas = document.getElementById('adCanvas');
+    const adCtx = adCanvas.getContext('2d');
+    const adLengthInput = document.getElementById('adLength');
+
+    let participants = new Set();
+    let watchingNow = 0;
+    let plays = 0;
+    let lotteryTimer = null;
+    let lotteryEndsAt = null;
+    let leaderboard = [
+      {email:'alex@example.com',plays:24},
+      {email:'sam@example.com',plays:19},
+      {email:'jordan@example.com',plays:15}
+    ];
+
+    function updateUI(){
+      watchingCountEl.textContent = watchingNow;
+      playsCountEl.textContent = plays;
+      participantsCountEl.textContent = participants.size;
+      revenuePoolEl.textContent = `$${(plays * 0.05).toFixed(2)}`; // demo: each play adds $0.05
+      // update leaderboard
+      leaderList.innerHTML = '';
+      leaderboard.slice(0,10).forEach((p,i)=>{
+        const el = document.createElement('div');
+        el.className='leader-item';
+        el.innerHTML = `<span>${i+1}. ${p.email}</span><strong>${p.plays}</strong>`;
+        leaderList.appendChild(el);
+      });
+    }
+
+    function isValidEmail(e){
+      return /\S+@\S+\.\S+/.test(e);
+    }
+
+    joinBtn.addEventListener('click', ()=>{
+      const email = emailInput.value.trim();
+      if(!isValidEmail(email)){ joinMsg.textContent = 'Please enter a valid email.'; return; }
+      participants.add(email.toLowerCase());
+      joinMsg.textContent = `Thanks — ${email} is registered for the next lottery.`;
+      updateUI();
+    });
+
+    playAdBtn.addEventListener('click', ()=>{ playAd(parseInt(adLengthInput.value,10)||10); });
+    simulateWatch.addEventListener('click', ()=>{ watchingNow++; updateUI(); setTimeout(()=>{ watchingNow = Math.max(0, watchingNow-1); updateUI(); },1500); });
+    resetBtn.addEventListener('click', ()=>{ participants.clear(); watchingNow=0; plays=0; leaderboard = []; updateUI(); lotteryStatusEl.textContent='Not started'; joinMsg.textContent=''; clearTimer(); drawIdle(); });
+
+    startLotteryBtn.addEventListener('click', ()=>{
+      // start a short demo timer
+      const seconds = 60; // demo 1 minute
+      lotteryEndsAt = Date.now() + seconds*1000;
+      lotteryStatusEl.textContent = 'Running';
+      startTimer();
+    });
+
+    function startTimer(){
+      clearTimer();
+      lotteryTimer = setInterval(()=>{
+        const diff = Math.max(0, lotteryEndsAt - Date.now());
+        timeLeftEl.textContent = formatMs(diff);
+        if(diff<=0){ clearTimer(); lotteryStatusEl.textContent='Ended'; }
+      },250);
+    }
+    function clearTimer(){ if(lotteryTimer) clearInterval(lotteryTimer); lotteryTimer=null; timeLeftEl.textContent='00:00:00'; }
+
+    function formatMs(ms){
+      const s = Math.floor(ms/1000);
+      const hh = String(Math.floor(s/3600)).padStart(2,'0');
+      const mm = String(Math.floor((s%3600)/60)).padStart(2,'0');
+      const ss = String(s%60).padStart(2,'0');
+      return `${hh}:${mm}:${ss}`;
+    }
+
+    // Simple canvas ad animation (UI-only placeholder)
+    let animHandle = null;
+    function drawIdle(){
+      adCtx.clearRect(0,0,adCanvas.width,adCanvas.height);
+      adCtx.fillStyle = '#f5fff7';
+      adCtx.fillRect(0,0,adCanvas.width,adCanvas.height);
+      adCtx.fillStyle = '#0b3b1f';
+      adCtx.font = '24px Inter, Arial';
+      adCtx.fillText('Ad Canvas — placeholder',20,40);
+      adCtx.font='14px Inter, Arial';
+      adCtx.fillStyle='#2e6b3f';
+      adCtx.fillText('Click "Play Ad" to simulate an ad and increase play count.',20,70);
+    }
+
+    function playAd(lengthSec=10){
+      // demo: animate simple frames for lengthSec seconds
+      let t = 0; const fps = 30; const totalFrames = lengthSec * fps;
+      watchingNow++;
+      plays++;
+      // add current participant to leaderboard if registered
+      const email = emailInput.value.trim().toLowerCase();
+      if(isValidEmail(email)){
+        participants.add(email);
+        const found = leaderboard.find(l=>l.email===email);
+        if(found) found.plays += 1; else leaderboard.unshift({email,plays:1});
+      }
+      updateUI();
+
+      if(animHandle) cancelAnimationFrame(animHandle);
+      function frame(){
+        t++;
+        // clear
+        adCtx.clearRect(0,0,adCanvas.width,adCanvas.height);
+        // background
+        adCtx.fillStyle = 'linear-gradient(white, #f0fff5)';
+        adCtx.fillStyle = '#ffffff';
+        adCtx.fillRect(0,0,adCanvas.width,adCanvas.height);
+        // moving bar
+        const w = adCanvas.width; const h = adCanvas.height;
+        const barW = 200 + Math.abs(Math.sin(t/20))*150;
+        const x = (t/totalFrames) * (w + barW) - barW;
+        adCtx.fillStyle = '#e6f9ec';
+        adCtx.fillRect(0,0,w,h);
+        adCtx.fillStyle = '#66c07a';
+        adCtx.fillRect(x, h/2 - 40, barW, 80);
+        adCtx.fillStyle = '#fff';
+        adCtx.font = '28px Inter, Arial';
+        adCtx.fillText('Sponsored — Demo Ad', Math.max(20, x+20), h/2 + 10);
+
+        // small progress
+        const prog = t/totalFrames;
+        adCtx.fillStyle = '#4aa35f';
+        adCtx.fillRect(20, h - 24, Math.max(0, (w-40)*prog), 10);
+
+        if(t < totalFrames){ animHandle = requestAnimationFrame(frame); }
+        else{ // finish
+          watchingNow = Math.max(0, watchingNow-1);
+          updateUI();
+        }
+      }
+      frame();
+    }
+
+    // small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+    drawIdle();
+    updateUI();
+  </script>
+
+
+</body></html>
